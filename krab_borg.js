@@ -41,6 +41,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var cmd = args[0];
 
         args = args.splice(1);
+        //console.log(args)
         switch(cmd) {
 
             //!beep for the memes
@@ -76,11 +77,67 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: user + ' has found ' + treasure + ' pennies!'
                 })
             break;
+            //!gamble
+            case 'gamble':
+                // if there is no amount that the user wanted to gamble
+                if (args.length == 0) {
+                  bot.sendMessage({
+                    to: channelID,
+                    message: " ``` To use !gamble please add the amount of pennies you would like to gamble! (i.e. !gamble 100) ``` "
+                  })
+                }
+                // makes it so that you either have to have more than 100 pennies to gamble or
+                // have more pennies than you want to gamble
+                if ((args[0] > userData[userID].pennies) || (userData[userID].pennies < 100)) {
+                    bot.sendMessage({
+                      to: channelID,
+                      message: " ```You do not have enough pennies to gamble that much! ``` "
+                    })
+                }
+                // short cut if you want to gamble all that you have
+                if (args[0] == 'all') {
+                    //lose
+                    if (Math.random() >= 0.5) {
+                        userData[userID].pennies -= userData[userID].pennies
+                        bot.sendMessage({
+                            to: channelID,
+                            message: user + ' has lost all of their pennies! :('
+                        })
+                    }
+                    //win
+                    else {
+                        userData[userID].pennies += userData[userID].pennies
+                        bot.sendMessage({
+                            to: channelID,
+                            message: user + ' doubled thier pennies! :)'
+                        })
+                    }
+                }
+                //case where you want to gamble a certain amount
+                else {
+                    //lose
+                    if (Math.random() >= 0.5) {
+                        userData[userID].pennies -= parseInt(args[0])
+                        bot.sendMessage({
+                            to: channelID,
+                            message: user + ' has lost ' + args[0] + ' pennies! :('
+                        })
+                    }
+                    //win
+                    else {
+                        userData[userID].pennies += parseInt(args[0])
+                        bot.sendMessage({
+                            to: channelID,
+                            message: user + ' has won ' + args[0] + ' pennies! :)'
+                        })
+                    }
+                }
+            break;
             //!help
             case 'help':
                 bot.sendMessage({
                     to:channelID,
-                    message: " ``` Krab Borg supports these operations: \n !beep \n !boop \n !pennies \n !treasure``` "
+                    message: " ``` Krab Borg supports these operations: \n !beep \n !boop \n !pennies \n !treasure \n !gamble ``` "
                 })
             break;
          }
