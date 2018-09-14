@@ -14,8 +14,16 @@
 
 ### Console ###
 - Put tokenid into ./auth_template.json
-`npm build`
-`node krab_borg.js`
+-`npm build`
+-`node krab_borg.js`
 
 ### Discord (again) ###
+![help](help.png)
+![pennies](pennies.png)
+![treasure](treasure.png)
+![gamble1](gamble1.png)
+![gamble2](gamble2.png)
+![gamble1](gamble3.png)
+
+
 
