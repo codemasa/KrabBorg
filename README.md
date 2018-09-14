@@ -14,10 +14,9 @@
 
 ### Console ###
 - Put tokenid into ./auth_template.json
+- In consle: `npm build`
 
--`npm build`
-
--`node krab_borg.js`
+-Then: `node krab_borg.js`
 
 ### Discord (again) ###
 ![help](help.png)
