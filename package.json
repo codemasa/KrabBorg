@@ -1,0 +1,13 @@
+{
+  "name": "krab-borg",
+  "version": "1.0.0",
+  "description": "Krab borg ala Spongebob",
+  "main": "krab_borg.js",
+  "author": "Cody-Joe Abe",
+  "dependencies": {
+    "discord.io": "github:woor/discord.io#gateway_v6",
+    "node-fetch": "^2.2.0",
+    "save": "^2.3.2",
+    "winston": "^2.4.0"
+  }
+}
