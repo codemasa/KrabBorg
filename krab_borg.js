@@ -2,6 +2,7 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var fs = require('fs');
+var fetch = require('node-fetch');
 
 //Configure JSON for users
 var userData = JSON.parse(fs.readFileSync('./database/userData.json','utf8'));
@@ -131,6 +132,46 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                             message: user + ' has won ' + args[0] + ' pennies! :)'
                         })
                     }
+                }
+            break;
+
+            case 'google':
+                if (args.length == 0){
+                    bot.sendMessage({
+                        to: channelID,
+                        message: "Please put what you want to google after the command! \n ```i.e. !google Spongebob Squarepants```"
+                    })
+                    break;
+                }
+                if (args[0] == "please"){
+                  var parseString = ""
+                  var apiURL = "https://serpapi.com/search?q"
+                  var finalLink = ''
+                  for(var i = 1 ; i < args.length ; i++){
+                    if(i == args.length-1){
+                      parseString += args[i].toString()
+                    }else{
+                      parseString += args[i].toString() + "+"
+                    }
+                  }
+                  bot.sendMessage({
+                    to: channelID,
+                    message: "https://www.google.com/search?q="+parseString
+                  });
+                }
+                else{
+                  var parseString = ""
+                  for(var i = 0 ; i < args.length ; i++){
+                    if(i == args.length-1){
+                      parseString += args[i].toString()
+                    }else{
+                      parseString += args[i].toString() + "+"
+                    }
+                  }
+                  bot.sendMessage({
+                    to: channelID,
+                    message: 'http://lmgtfy.com/?q='+parseString
+                  })
                 }
             break;
             //!help
