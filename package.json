@@ -6,7 +6,7 @@
   "author": "Cody-Joe Abe",
   "scripts": {
     "start": "node ./krab_borg.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "discord.io": "github:woor/discord.io#gateway_v6",
