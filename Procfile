@@ -1,1 +1,1 @@
-web: node krab_borg.js
+worker: node krab_borg.js
