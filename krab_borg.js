@@ -1,8 +1,8 @@
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('./auth.json');
 var fs = require('fs');
 var fetch = require('node-fetch');
+var token = process.env.token;
 
 //Configure JSON for users
 var userData = JSON.parse(fs.readFileSync('./database/userData.json','utf8'));
@@ -15,7 +15,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 // Initialize Discord Bot
 var bot = new Discord.Client({
-   token: auth.token,
+   token: token,
    autorun: true
 });
 bot.on('ready', function (evt) {
